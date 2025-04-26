@@ -37,74 +37,92 @@ export async function POST(request) {
     // Timestamp the application
     formData.submittedAt = new Date().toISOString();
     
-    // Format the data for Discord
+    // Create application ID
+    const applicationId = `RT-${Date.now().toString().slice(-6)}`;
+    
+    // Format Discord webhook payload
     const discordPayload = {
-      ...formData,
-      // Add a formatted version specifically for Discord
-      discordFormatted: {
-        embeds: [
-          {
-            title: `New Guild Application: ${formData.characterName}-${formData.realm}`,
-            color: 0xff5252, // Red color
-            fields: [
-              {
-                name: "Character Info",
-                value: `**Name:** ${formData.characterName}\n**Realm:** ${formData.realm}\n**Class:** ${formData.class}\n**Spec:** ${formData.spec}\n**Item Level:** ${formData.ilvl}`
-              },
-              {
-                name: "Contact",
-                value: `**Discord:** ${formData.discordTag}${formData.battleTag ? `\n**Battle.net:** ${formData.battleTag}` : ''}`
-              },
-              {
-                name: "Availability",
-                value: formData.availabilityText || "Not specified"
-              },
-              {
-                name: "Raid Experience",
-                value: formData.raidExperience || "None provided"
-              },
-              {
-                name: "Why Join",
-                value: formData.whyJoin || "None provided"
-              },
-              {
-                name: "Favorite Crayon Flavor 🖍️",
-                value: formData.favoriteColor || "None provided"
-              }
-            ],
-            timestamp: formData.submittedAt,
-            footer: {
-              text: `Application ID: RT-${Date.now().toString().slice(-6)}`
+      content: `**NEW GUILD APPLICATION**
+      
+**Character:** ${formData.characterName}-${formData.realm} (${formData.class} - ${formData.spec}, ilvl: ${formData.ilvl})
+**Discord:** ${formData.discordTag}${formData.battleTag ? `\n**Battle.net:** ${formData.battleTag}` : ''}
+**Available:** ${formData.availabilityText}
+
+**Raid Experience:**
+${formData.raidExperience}
+
+**Why they want to join:**
+${formData.whyJoin}
+
+**Favorite Crayon Flavor:** ${formData.favoriteColor}
+
+*Application ID: ${applicationId}*`,
+      embeds: [
+        {
+          title: `📝 Application: ${formData.characterName}-${formData.realm}`,
+          color: 16007990, // Red color in decimal
+          fields: [
+            {
+              name: "Character Info",
+              value: `**Name:** ${formData.characterName}\n**Realm:** ${formData.realm}\n**Class:** ${formData.class}\n**Spec:** ${formData.spec}\n**Item Level:** ${formData.ilvl}`,
+              inline: true
+            },
+            {
+              name: "Contact",
+              value: `**Discord:** ${formData.discordTag}${formData.battleTag ? `\n**Battle.net:** ${formData.battleTag}` : ''}`,
+              inline: true
+            },
+            {
+              name: "Availability",
+              value: formData.availabilityText || "Not specified",
+              inline: false
+            },
+            {
+              name: "Raid Experience",
+              value: formData.raidExperience || "None provided",
+              inline: false
+            },
+            {
+              name: "Why Join Raid Team",
+              value: formData.whyJoin || "None provided",
+              inline: false
+            },
+            {
+              name: "🖍️ Favorite Crayon Flavor",
+              value: formData.favoriteColor || "None provided",
+              inline: false
             }
+          ],
+          timestamp: formData.submittedAt,
+          footer: {
+            text: `Application ID: ${applicationId}`
           }
-        ]
-      }
+        }
+      ]
     };
     
-    // For make.com integration, you can use their webhook
-    const makeWebhookUrl = process.env.MAKE_WEBHOOK_URL;
+    // Discord webhook URL
+    const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
     
-    if (makeWebhookUrl) {
-      // Send to make.com
-      try {
-        const makeResponse = await fetch(makeWebhookUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(discordPayload),
-        });
-        
-        if (!makeResponse.ok) {
-          console.error('Failed to send to make.com:', await makeResponse.text());
-        }
-      } catch (makeError) {
-        console.error('Error sending to make.com:', makeError);
-        // Continue with the response even if make.com fails
+    // Send to Discord
+    try {
+      const discordResponse = await fetch(discordWebhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(discordPayload),
+      });
+      
+      if (!discordResponse.ok) {
+        console.error('Failed to send to Discord:', await discordResponse.text());
+        // Continue even if Discord fails, so the user still gets confirmation
+      } else {
+        console.log('Application successfully sent to Discord');
       }
-    } else {
-      // Just log the data if no webhook is configured
-      console.log('Application received:', discordPayload);
+    } catch (webhookError) {
+      console.error('Error sending to Discord webhook:', webhookError);
+      // Continue with the response even if Discord webhook fails
     }
     
     // Return success response
@@ -112,7 +130,7 @@ export async function POST(request) {
       { 
         success: true,
         message: "Application submitted successfully",
-        applicationId: `RT-${Date.now().toString().slice(-6)}` // Generate a simple ID
+        applicationId: applicationId
       },
       { status: 200 }
     );
