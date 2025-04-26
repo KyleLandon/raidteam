@@ -6,7 +6,8 @@
 }
 
 body {
-    font-family: 'Permanent Marker', 'Comic Neue', cursive;
+    font-family: 'Comic Neue', 'Arial', sans-serif;
+    font-weight: 700;
     background-color: #222;
     background-image: 
         linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
@@ -581,6 +582,55 @@ footer {
 }
 
 @media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+    
+    .tagline {
+        font-size: 18px;
+    }
+    
+    .join-button, .apply-button {
+        font-size: 16px;
+    }
+    
+    .form-input, .form-select, .form-textarea {
+        font-size: 16px;
+    }
+    
+    .paper {
+        padding: 20px;
+        margin: 10px 0;
+    }
+    
+    section {
+        padding: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .nav-link {
+        font-size: 16px;
+        padding: 4px 10px;
+    }
+    
+    .roster-category li, .about li, .raid-info li, .requirements li {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+    
     .raid-times {
         flex-direction: column;
     }
@@ -591,21 +641,31 @@ footer {
     
     .join-button {
         width: 100%;
-        font-size: 18px;
         padding: 10px 15px;
-    }
-    
-    h2 {
-        font-size: 30px;
-    }
-    
-    .tagline {
-        font-size: 18px;
     }
     
     .roster-categories {
         flex-direction: column;
         gap: 20px;
+    }
+    
+    .player-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .player-image {
+        margin: 20px auto 0;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .checkbox-group {
+        flex-direction: column;
+        gap: 10px;
     }
 }
 
@@ -1088,4 +1148,45 @@ footer {
   color: #666;
   margin-top: 4px;
   font-style: italic;
+}
+
+/* Font classes for consistent usage */
+.marker-font {
+    font-family: 'Permanent Marker', 'Impact', 'Arial Black', sans-serif;
+}
+
+h1, h2, h3, .tagline, .join-button, .back-button, .raid-banner span {
+    font-family: 'Permanent Marker', 'Impact', 'Arial Black', sans-serif;
+}
+
+/* Adjust font sizes for better mobile readability */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+    
+    .tagline {
+        font-size: 18px;
+    }
+    
+    .join-button, .apply-button {
+        font-size: 16px;
+    }
+    
+    .form-input, .form-select, .form-textarea {
+        font-size: 16px;
+    }
 }
