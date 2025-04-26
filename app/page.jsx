@@ -121,7 +121,7 @@ export default function Page() {
           <a href="https://discord.gg/raidteam" className="social-button discord">
             <span className="icon">👾</span>
           </a>
-          <a href="https://twitter.com/yourteam" className="social-button twitter">
+          <a href="https://x.com/Raid_Team_" className="social-button twitter">
             <span className="icon">🐦</span>
           </a>
           <a href="https://twitch.tv/yourteam" className="social-button twitch">
