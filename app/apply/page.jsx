@@ -305,7 +305,7 @@ export default function ApplicationPage() {
             </div>
             
             <div className="form-group crayon-question">
-              <label htmlFor="favoriteColor">What's your favorite crayon flavor? <span className="required">*</span></label>
+              <label htmlFor="favoriteColor">What&apos;s your favorite crayon flavor? <span className="required">*</span></label>
               <input
                 type="text"
                 id="favoriteColor"
