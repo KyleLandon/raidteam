@@ -271,7 +271,7 @@ export default function ApplicationPage() {
                 required
                 className="form-textarea"
                 rows="4"
-                placeholder="Tell us what you're looking for in a guild and why Raid Team is a good fit..."
+                placeholder="Tell us what you&apos;re looking for in a guild and why Raid Team is a good fit..."
               ></textarea>
             </div>
             

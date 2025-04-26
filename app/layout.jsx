@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import Link from 'next/link';
 
 export const metadata = {
     title: 'Raid Team - WoW Guild',
@@ -10,15 +11,14 @@ export default function RootLayout({ children }) {
         <html lang="en">
             <head>
                 <link rel="icon" href="/favicon.svg" sizes="any" />
-                <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
                 <script src="/js/script.js" defer></script>
             </head>
             <body>
                 <div className="content-wrapper">
                     <nav className="main-nav">
                         <div className="nav-links">
-                            <a href="/" className="nav-link">Home</a>
-                            <a href="/apply" className="nav-link">Apply</a>
+                            <Link href="/" className="nav-link">Home</Link>
+                            <Link href="/apply" className="nav-link">Apply</Link>
                         </div>
                     </nav>
                     <main>{children}</main>
