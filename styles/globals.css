@@ -609,14 +609,13 @@ footer {
 /* Player Links in Roster */
 .player-link {
     position: relative;
-    text-decoration: underline;
-    color: #2196f3;
+    text-decoration: none;
+    color: inherit;
     font-weight: bold;
     transition: all 0.2s ease;
     padding: 2px 4px;
     z-index: 1;
     cursor: pointer;
-    border-radius: 4px;
     display: inline-block;
 }
 
@@ -630,13 +629,10 @@ footer {
     background-color: rgba(255, 82, 82, 0.3);
     transition: height 0.2s ease;
     z-index: -1;
-    border-radius: 4px;
 }
 
 .player-link:hover {
     transform: translateY(-2px);
-    background-color: rgba(33, 150, 243, 0.1);
-    color: #ff5252;
 }
 
 .player-link:hover::before {

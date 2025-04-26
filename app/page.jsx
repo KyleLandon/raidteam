@@ -92,27 +92,27 @@ export default function Page() {
           <div className="roster-category">
             <h3>Masta:</h3>
             <ul>
-              <li><span className="marker-bullet"></span> <Link href="/player/kylandon" className="player-link">KyleLandon 👤</Link></li>
+              <li><span className="marker-bullet"></span> <Link href="/player/kylandon" className="player-link">KyleLandon</Link></li>
             </ul>
           </div>
           <div className="roster-category">
             <h3>Workers:</h3>
             <ul>
-              <li><span className="marker-bullet"></span> <Link href="/player/covert" className="player-link">Covert 👤</Link></li>
-              <li><span className="marker-bullet"></span> <Link href="/player/greg" className="player-link">Greg 👤</Link></li>
+              <li><span className="marker-bullet"></span> <Link href="/player/covert" className="player-link">Covert</Link></li>
+              <li><span className="marker-bullet"></span> <Link href="/player/greg" className="player-link">Greg</Link></li>
             </ul>
           </div>
           <div className="roster-category">
             <h3>Blastas:</h3>
             <ul>
-              <li><span className="marker-bullet"></span> <Link href="/player/redeemer" className="player-link">Redeemer 👤</Link></li>
+              <li><span className="marker-bullet"></span> <Link href="/player/redeemer" className="player-link">Redeemer</Link></li>
             </ul>
           </div>
           <div className="roster-category">
             <h3>New Guys:</h3>
             <ul>
-              <li><span className="marker-bullet"></span> <Link href="/player/fallen" className="player-link">Fallen 👤</Link></li>
-              <li><span className="marker-bullet"></span> <Link href="/player/jelloh" className="player-link">Jelloh 👤</Link></li>
+              <li><span className="marker-bullet"></span> <Link href="/player/fallen" className="player-link">Fallen</Link></li>
+              <li><span className="marker-bullet"></span> <Link href="/player/jelloh" className="player-link">Jelloh</Link></li>
             </ul>
           </div>
         </div>

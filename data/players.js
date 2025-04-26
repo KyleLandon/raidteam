@@ -2,8 +2,8 @@ const playerData = {
   greg: {
     displayName: "Greg",
     role: "Worker",
-    characterClass: "Warrior",
-    joinDate: "2022",
+    characterClass: "Warlock",
+    joinDate: "2025",
     imageUrl: "/images/players/greg.png", // Optional, add player images later
     content: `
       <div class="player-custom-content">
@@ -20,8 +20,8 @@ const playerData = {
   covert: {
     displayName: "Covert",
     role: "Worker",
-    characterClass: "Rogue",
-    joinDate: "2021",
+    characterClass: "Hunter",
+    joinDate: "2025",
     content: `
       <div class="player-custom-content">
         <h2>Stealth Game Enthusiast</h2>
@@ -32,8 +32,8 @@ const playerData = {
   kylandon: {
     displayName: "KyleLandon",
     role: "Masta",
-    characterClass: "Death Knight",
-    joinDate: "2019",
+    characterClass: "Paladin",
+    joinDate: "2025",
     content: `
       <div class="player-custom-content">
         <h2>Guild Leadership</h2>
@@ -44,8 +44,8 @@ const playerData = {
   redeemer: {
     displayName: "Redeemer",
     role: "Blasta",
-    characterClass: "Mage",
-    joinDate: "2020",
+    characterClass: "Paladin",
+    joinDate: "2025",
     content: `
       <div class="player-custom-content">
         <h2>Pyromaniac</h2>
@@ -56,8 +56,8 @@ const playerData = {
   fallen: {
     displayName: "Fallen",
     role: "New Guy",
-    characterClass: "Priest",
-    joinDate: "2023",
+    characterClass: "Shaman",
+    joinDate: "2025",
     content: `
       <div class="player-custom-content">
         <h2>Just Started</h2>
@@ -68,8 +68,8 @@ const playerData = {
   jelloh: {
     displayName: "Jelloh",
     role: "New Guy",
-    characterClass: "Shaman",
-    joinDate: "2023",
+    characterClass: "Hunter",
+    joinDate: "2025",
     content: `
       <div class="player-custom-content">
         <h2>Healing Specialist</h2>
