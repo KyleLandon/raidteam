@@ -50,7 +50,7 @@ export async function POST(request) {
       content: `**NEW GUILD APPLICATION**
       
 **Character:** ${formData.characterName}-${formData.realm} (${formData.class} - ${formData.spec}, ilvl: ${formData.ilvl})
-**Discord:** ${formData.discordTag}${formData.battleTag ? `\n**Battle.net:** ${formData.battleTag}` : ''}
+**Discord:** \`@${formData.discordTag}\` ← *Copy this to mention them*${formData.battleTag ? `\n**Battle.net:** ${formData.battleTag}` : ''}
 **Available:** ${formData.availabilityText}
 
 **Raid Experience:**
@@ -74,7 +74,7 @@ ${formData.whyJoin}
             },
             {
               name: "Contact",
-              value: `**Discord:** ${formData.discordTag}${formData.battleTag ? `\n**Battle.net:** ${formData.battleTag}` : ''}`,
+              value: `**Discord:** \`@${formData.discordTag}\`${formData.battleTag ? `\n**Battle.net:** ${formData.battleTag}` : ''}`,
               inline: true
             },
             {

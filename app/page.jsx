@@ -26,7 +26,7 @@ export default function Page() {
       <header>
         <div className="top-bar">
           <a href="https://discord.gg/raidteam" className="join-button header-button">
-            JOIN US NOW
+            Join Discord Now
           </a>
         </div>
         <div className="logo-container">
@@ -70,7 +70,7 @@ export default function Page() {
       <section className="join-us">
         <h2>JOIN US</h2>
         <a href="https://discord.gg/raidteam" className="join-button">
-          JOIN US NOW
+          Join Discord Now
         </a>
         <div className="requirements">
           <h3>Requirements:</h3>

@@ -277,7 +277,7 @@ export default function ApplicationPage() {
             
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="discordTag">Discord Tag <span className="required">*</span></label>
+                <label htmlFor="discordTag">Discord Username <span className="required">*</span></label>
                 <input
                   type="text"
                   id="discordTag"
@@ -286,8 +286,9 @@ export default function ApplicationPage() {
                   onChange={handleChange}
                   required
                   className="form-input"
-                  placeholder="username#0000 or username"
+                  placeholder="YourUsername"
                 />
+                <small className="form-helper-text">Enter your Discord username without the @ symbol</small>
               </div>
               
               <div className="form-group">
