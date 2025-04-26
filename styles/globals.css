@@ -163,12 +163,19 @@ h2 {
 /* Raid Info section */
 .raid-times {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .raid-text {
     flex: 1;
+    text-align: center;
+}
+
+.raid-text ul {
+    display: inline-block;
+    text-align: left;
 }
 
 .raid-art {
@@ -400,6 +407,82 @@ footer {
     100% { transform: scale(0.5); opacity: 0.2; }
 }
 
+/* Roster section */
+.roster-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.roster-category {
+    flex: 1 1 200px;
+    min-width: 0;
+}
+
+.roster-category h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #ff9800;
+    transform: rotate(-1deg);
+    display: inline-block;
+    position: relative;
+}
+
+.roster-category h3::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #ff9800, transparent);
+    bottom: -5px;
+    left: 0;
+}
+
+.roster-category ul {
+    list-style-type: none;
+}
+
+.roster-category li {
+    margin-bottom: 10px;
+    font-size: 18px;
+    position: relative;
+    padding-left: 25px;
+    line-height: 1.4;
+}
+
+.roster-category:nth-child(1) h3 {
+    color: #ff5252;
+}
+
+.roster-category:nth-child(1) h3::after {
+    background: linear-gradient(90deg, #ff5252, transparent);
+}
+
+.roster-category:nth-child(2) h3 {
+    color: #4caf50;
+}
+
+.roster-category:nth-child(2) h3::after {
+    background: linear-gradient(90deg, #4caf50, transparent);
+}
+
+.roster-category:nth-child(3) h3 {
+    color: #2196f3;
+}
+
+.roster-category:nth-child(3) h3::after {
+    background: linear-gradient(90deg, #2196f3, transparent);
+}
+
+.roster-category:nth-child(4) h3 {
+    color: #9c27b0;
+}
+
+.roster-category:nth-child(4) h3::after {
+    background: linear-gradient(90deg, #9c27b0, transparent);
+}
+
 @media (max-width: 768px) {
     .raid-times {
         flex-direction: column;
@@ -422,4 +505,27 @@ footer {
     .tagline {
         font-size: 18px;
     }
+    
+    .roster-categories {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Join section */
+.join-us {
+    position: relative;
+    padding-top: 40px;
+}
+
+.join-us .join-button {
+    position: absolute;
+    top: -25px;
+    right: 20px;
+    transform: rotate(3deg);
+    z-index: 2;
+}
+
+.join-us .join-button:hover {
+    transform: rotate(-3deg) translateY(-5px);
 }

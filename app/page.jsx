@@ -66,6 +66,37 @@ export default function Page() {
         </div>
       </section>
 
+      <section className="roster">
+        <h2>CURRENT ROSTER</h2>
+        <div className="roster-categories">
+          <div className="roster-category">
+            <h3>Masta:</h3>
+            <ul>
+              <li><span className="marker-bullet"></span> KyleLandon</li>
+            </ul>
+          </div>
+          <div className="roster-category">
+            <h3>Workers:</h3>
+            <ul>
+              <li><span className="marker-bullet"></span> Covert</li>
+              <li><span className="marker-bullet"></span> Greg</li>
+            </ul>
+          </div>
+          <div className="roster-category">
+            <h3>Blastas:</h3>
+            <ul>
+              <li><span className="marker-bullet"></span> Redeemer</li>
+            </ul>
+          </div>
+          <div className="roster-category">
+            <h3>New Guys:</h3>
+            <ul>
+              <li><span className="marker-bullet"></span> Fallen</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <footer>
         <p>Raid Team — Officially unofficial. Proudly low budget since forever.</p>
       </footer>
