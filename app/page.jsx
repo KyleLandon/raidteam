@@ -1,6 +1,25 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 
 export default function Page() {
+  const [wipeCount, setWipeCount] = useState(37); // Default value
+  
+  useEffect(() => {
+    // Fetch wipe count from our API
+    fetch('/api/wipe-counter')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.count) {
+          setWipeCount(data.count);
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching wipe count:', err);
+        // If error, the default count will remain
+      });
+  }, []);
+
   return (
     <div className="paper">
       <header>
@@ -62,7 +81,7 @@ export default function Page() {
         </div>
         <div className="wipe-counter">
           <span>Wipe Counter: </span>
-          <span className="count">37</span>
+          <span className="count">{wipeCount}</span>
         </div>
       </section>
 
