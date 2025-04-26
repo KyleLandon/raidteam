@@ -344,6 +344,9 @@ h2 {
     transform: rotate(2deg);
     margin-top: 20px;
     background-color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
 }
 
 .count {
@@ -518,6 +521,7 @@ footer {
 .join-us {
     position: relative;
     padding-top: 40px;
+    padding-bottom: 70px;
     text-align: center;
 }
 
