@@ -111,6 +111,7 @@ export default function Page() {
             <h3>New Guys:</h3>
             <ul>
               <li><span className="marker-bullet"></span> Fallen</li>
+              <li><span className="marker-bullet"></span> Jelloh</li>
             </ul>
           </div>
         </div>
