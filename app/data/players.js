@@ -7,6 +7,9 @@ const playerData = {
     imageUrl: "/images/players/gregimage.png",
     content: `
       <div class="player-custom-content">
+        <div class="player-custom-image">
+          <img src="/images/players/gregimage.png" alt="Balenax the Warlock" />
+        </div>
         <h2>Balenax the Warlock</h2>
         
         <p>Balenax the Warlock is not your average wielder of shadow and flame. Hailing from the chaotic depths of the Twisting Nether, he's mastered dark pacts, summoned infernals, and twisted the fabric of souls—but his true passion? Crayons.</p>
