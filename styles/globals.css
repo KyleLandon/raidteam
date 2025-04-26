@@ -521,6 +521,14 @@ footer {
     text-align: center;
 }
 
+.join-us h2 {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    margin: 0;
+    text-align: left;
+}
+
 .join-us .join-button {
     position: absolute;
     top: -25px;
