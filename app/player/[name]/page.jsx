@@ -1,12 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
-import playerData from '../../data/players.js';
+import playerData from '../../../data/players.js';
 
 export default function PlayerProfile({ params }) {
   const playerName = params.name;
   const player = playerData[playerName];
+  
+  useEffect(() => {
+    // Ensure the page is properly rendered on the client side
+    console.log('Player profile loaded for:', playerName);
+  }, [playerName]);
   
   if (!player) {
     return (
