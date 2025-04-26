@@ -15,6 +15,12 @@ export default function RootLayout({ children }) {
             </head>
             <body>
                 <div className="content-wrapper">
+                    <nav className="main-nav">
+                        <div className="nav-links">
+                            <a href="/" className="nav-link">Home</a>
+                            <a href="/apply" className="nav-link">Apply</a>
+                        </div>
+                    </nav>
                     <main>{children}</main>
                 </div>
             </body>

@@ -80,6 +80,11 @@ export default function Page() {
             <li><span className="marker-bullet"></span> Laugh when we wipe</li>
           </ul>
         </div>
+        <div className="apply-button-container">
+          <Link href="/apply" className="apply-button">
+            Apply to Guild
+          </Link>
+        </div>
         <div className="wipe-counter">
           <span>Wipe Counter: </span>
           <span className="count">{wipeCount}</span>
