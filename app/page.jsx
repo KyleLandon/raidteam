@@ -1,67 +1,74 @@
-import Link from 'next/link';
-import { Card } from 'components/card';
-import { ContextAlert } from 'components/context-alert';
-import { Markdown } from 'components/markdown';
-import { RandomQuote } from 'components/random-quote';
-import { getNetlifyContext } from 'utils';
-
-const contextExplainer = `
-The card below is rendered on the server based on the value of \`process.env.CONTEXT\` 
-([docs](https://docs.netlify.com/configure-builds/environment-variables/#build-metadata)):
-`;
-
-const preDynamicContentExplainer = `
-The card content below is fetched by the client-side from \`/quotes/random\` (see file \`app/quotes/random/route.js\`) with a different quote shown on each page load:
-`;
-
-const postDynamicContentExplainer = `
-On Netlify, Next.js Route Handlers are automatically deployed as [Serverless Functions](https://docs.netlify.com/functions/overview/).
-Alternatively, you can add Serverless Functions to any site regardless of framework, with acccess to the [full context data](https://docs.netlify.com/functions/api/).
-
-And as always with dynamic content, beware of layout shifts & flicker! (here, we aren't...)
-`;
-
-const ctx = getNetlifyContext();
+import React from 'react';
 
 export default function Page() {
-    return (
-        <div className="flex flex-col gap-12 sm:gap-16">
-            <section>
-                <ContextAlert className="mb-6" />
-                <h1 className="mb-4">Netlify Platform Starter - Next.js</h1>
-                <p className="mb-6 text-lg">Get started with Next.js and Netlify in seconds.</p>
-                <Link href="https://docs.netlify.com/frameworks/next-js/overview/" className="btn btn-lg sm:min-w-64">
-                    Read the Docs
-                </Link>
-            </section>
-            {!!ctx && (
-                <section className="flex flex-col gap-4">
-                    <Markdown content={contextExplainer} />
-                    <RuntimeContextCard />
-                </section>
-            )}
-            <section className="flex flex-col gap-4">
-                <Markdown content={preDynamicContentExplainer} />
-                <RandomQuote />
-                <Markdown content={postDynamicContentExplainer} />
-            </section>
+  return (
+    <div className="paper">
+      <header>
+        <div className="top-bar">
+          <a href="https://discord.gg/raidteam" className="join-button header-button">
+            JOIN US NOW
+          </a>
         </div>
-    );
-}
+        <div className="logo-container">
+          <img src="/images/raidteam.png" alt="Raid Team Logo" className="logo" />
+          <div className="sparkles"></div>
+        </div>
+        <h2 className="tagline">you show up. we kill bosses.</h2>
+      </header>
 
-function RuntimeContextCard() {
-    const title = `Netlify Context: running in ${ctx} mode.`;
-    if (ctx === 'dev') {
-        return (
-            <Card title={title}>
-                <p>Next.js will rebuild any page you navigate to, including static pages.</p>
-            </Card>
-        );
-    } else {
-        return (
-            <Card title={title}>
-                <p>This page was statically-generated at build time.</p>
-            </Card>
-        );
-    }
+      <section className="about">
+        <h2>ABOUT US</h2>
+        <p>Raid Team is a no-drama, early AOTC guild that dives into Mythic. We're serious about playing well, not about acting serious.</p>
+        <ul>
+          <li><span className="marker-bullet">●</span> Early AOTC every tier</li>
+          <li><span className="marker-bullet">●</span> Mythic progression for those who want it</li>
+          <li><span className="marker-bullet">●</span> Mythic+ keys always popping</li>
+          <li><span className="marker-bullet">●</span> Adult vibes, no crybabies</li>
+        </ul>
+      </section>
+
+      <section className="raid-info">
+        <h2>RAID INFO</h2>
+        <div className="raid-times">
+          <div className="raid-text">
+            <h3>Raid Days:</h3>
+            <ul>
+              <li><span className="marker-bullet"></span> Tuesday @ 6PM CST</li>
+              <li><span className="marker-bullet"></span> Wednesday @ 6PM CST</li>
+            </ul>
+          </div>
+          <div className="raid-art">
+            <div className="sword"></div>
+            <div className="shield"></div>
+          </div>
+        </div>
+        <div className="raid-banner">
+          <span>RAID TIME</span>
+        </div>
+      </section>
+
+      <section className="join-us">
+        <h2>JOIN US</h2>
+        <a href="https://discord.gg/raidteam" className="join-button">
+          JOIN US NOW
+        </a>
+        <div className="requirements">
+          <h3>Requirements:</h3>
+          <ul>
+            <li><span className="marker-bullet"></span> Know your class</li>
+            <li><span className="marker-bullet"></span> Show up prepared</li>
+            <li><span className="marker-bullet"></span> Laugh when we wipe</li>
+          </ul>
+        </div>
+        <div className="wipe-counter">
+          <span>Wipe Counter: </span>
+          <span className="count">37</span>
+        </div>
+      </section>
+
+      <footer>
+        <p>Raid Team — Officially unofficial. Proudly low budget since forever.</p>
+      </footer>
+    </div>
+  );
 }

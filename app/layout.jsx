@@ -1,12 +1,8 @@
 import '../styles/globals.css';
-import { Footer } from '../components/footer';
-import { Header } from '../components/header';
 
 export const metadata = {
-    title: {
-        template: '%s | Netlify',
-        default: 'Netlify Starter'
-    }
+    title: 'Raid Team - WoW Guild',
+    description: 'Raid Team is a no-drama, early AOTC guild that dives into Mythic.'
 };
 
 export default function RootLayout({ children }) {
@@ -14,14 +10,12 @@ export default function RootLayout({ children }) {
         <html lang="en">
             <head>
                 <link rel="icon" href="/favicon.svg" sizes="any" />
+                <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
+                <script src="/js/script.js" defer></script>
             </head>
-            <body className="antialiased text-white bg-blue-900">
-                <div className="flex flex-col min-h-screen px-6 bg-noise sm:px-12">
-                    <div className="flex flex-col w-full max-w-5xl mx-auto grow">
-                        <Header />
-                        <main className="grow">{children}</main>
-                        <Footer />
-                    </div>
+            <body>
+                <div className="content-wrapper">
+                    <main>{children}</main>
                 </div>
             </body>
         </html>
