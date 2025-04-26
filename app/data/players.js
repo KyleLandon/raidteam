@@ -2,18 +2,16 @@ const playerData = {
   greg: {
     displayName: "Greg",
     role: "Worker",
-    characterClass: "Warrior",
+    characterClass: "Warlock",
     joinDate: "2022",
-    imageUrl: "/images/players/greg.png", // Optional, add player images later
+    imageUrl: "/images/players/gregimage.png",
     content: `
       <div class="player-custom-content">
-        <h2>Why I Like to Eat Red Crayons</h2>
+        <h2>Balenax the Warlock</h2>
         
-        <p>There's something uniquely satisfying about red crayons. Maybe it's the bold color, rich like cherries or ripe strawberries, that draws me in. While others may reach for candy or chips, I find comfort in the waxy snap of a red crayon.</p>
+        <p>Balenax the Warlock is not your average wielder of shadow and flame. Hailing from the chaotic depths of the Twisting Nether, he's mastered dark pacts, summoned infernals, and twisted the fabric of souls—but his true passion? Crayons.</p>
         
-        <p>It's not just about taste—it's about the experience. The soft texture and nostalgic scent remind me of childhood art sessions, where creativity had no limits. Eating a red crayon feels like a tiny rebellion, a harmless detour from the ordinary. It's quirky, unexpected, and undeniably mine.</p>
-        
-        <p>Of all the colors, red is the most passionate—it screams confidence and energy. That's the flavor I crave, both in life and in crayons. Sure, people raise eyebrows, but that just makes it better. Eating red crayons isn't just a habit—it's a statement. It says, "I'm not afraid to be different," and in a world of rules, that's deliciously freeing.</p>
+        <p>That's right—between flinging shadow bolts and siphoning life, Balenax can often be found hunched over parchment in his dark tower, furiously scribbling with a bright orange crayon named "Sizzling Ember." While others fear him for his demonic powers, his minions whisper of a softer side—one that doodles fel imps with hearts and flowers.</p>
       </div>
     `
   },
