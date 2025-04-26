@@ -18,7 +18,7 @@ export default function Page() {
 
       <section className="about">
         <h2>ABOUT US</h2>
-        <p>Raid Team is a no-drama, early AOTC guild that dives into Mythic. We're serious about playing well, not about acting serious.</p>
+        <p>Raid Team is a no-drama, early AOTC guild that dives into Mythic. We&apos;re serious about playing well, not about acting serious.</p>
         <ul>
           <li><span className="marker-bullet">●</span> Early AOTC every tier</li>
           <li><span className="marker-bullet">●</span> Mythic progression for those who want it</li>
