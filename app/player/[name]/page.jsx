@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import playerData from '../../../data/players.js';
 
 export default function PlayerProfile({ params }) {
@@ -11,7 +12,10 @@ export default function PlayerProfile({ params }) {
   useEffect(() => {
     // Ensure the page is properly rendered on the client side
     console.log('Player profile loaded for:', playerName);
-  }, [playerName]);
+    if (player && player.imageUrl) {
+      console.log('Player image URL:', player.imageUrl);
+    }
+  }, [playerName, player]);
   
   if (!player) {
     return (
@@ -37,7 +41,14 @@ export default function PlayerProfile({ params }) {
           </div>
           {player.imageUrl && (
             <div className="player-image">
-              <img src={player.imageUrl} alt={player.displayName} />
+              <img 
+                src={player.imageUrl} 
+                alt={player.displayName}
+                onError={(e) => {
+                  console.error('Image failed to load:', player.imageUrl);
+                  e.target.style.display = 'none';
+                }}
+              />
             </div>
           )}
         </div>
