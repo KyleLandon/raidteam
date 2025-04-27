@@ -1,14 +1,3 @@
 [build]
-  command = "npm run build:netlify"
   publish = ".next"
-  edge_functions = "./netlify/edge-functions"
-
-[build.environment]
-  NEXT_USE_NETLIFY_EDGE = "true"
-  NODE_VERSION = "18"
-
-[functions]
-  included_files = ["server/**"]
-  
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  command = "npm run build"

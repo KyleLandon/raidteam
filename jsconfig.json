@@ -1,11 +1,5 @@
 { 
     "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "@/*": ["./*"],
-            "lib/db/players": ["./lib/db/players"],
-            "lib/db/crayons": ["./lib/db/crayons"],
-            "lib/db/mongodb": ["./lib/db/mongodb"]
-        }
-    }    
+        "baseUrl": "."
+      }    
 }
