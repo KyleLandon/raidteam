@@ -1,42 +1,56 @@
 import { NextResponse } from 'next/server';
 import { addPoints } from '../../../../lib/db/crayons';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../../auth/[...nextauth]/route';
 
 export async function POST(request) {
   try {
-    // Check authentication
-    const session = await getServerSession(authOptions);
-    if (!session || !session.user.isOfficer) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const data = await request.json();
-    const { playerId, category, points, reason } = data;
-
+    const body = await request.json();
+    const { 
+      userId, 
+      username, 
+      points, 
+      category, 
+      reason, 
+      issuedBy, 
+      issuedByName 
+    } = body;
+    
     // Validate required fields
-    if (!playerId || !category || !points || isNaN(parseInt(points))) {
-      return NextResponse.json({
-        success: false,
-        error: 'Missing required fields: playerId, category, and points are required. Points must be a number.'
+    const requiredFields = ['userId', 'username', 'points', 'category', 'reason', 'issuedBy', 'issuedByName'];
+    const missingFields = requiredFields.filter(field => !body[field]);
+    
+    if (missingFields.length > 0) {
+      return NextResponse.json({ 
+        error: `Missing required fields: ${missingFields.join(', ')}` 
       }, { status: 400 });
     }
-
+    
+    // Validate points is a number and greater than 0
+    if (isNaN(points) || points <= 0) {
+      return NextResponse.json({ 
+        error: 'Points must be a positive number' 
+      }, { status: 400 });
+    }
+    
     // Add points
     const result = await addPoints({
-      userId: playerId,
-      amount: parseInt(points, 10),
+      userId,
+      username,
+      points: Number(points),
       category,
-      reason: reason || '',
-      addedBy: session.user.id
+      reason,
+      issuedBy,
+      issuedByName
     });
-
+    
     return NextResponse.json({
       success: true,
-      result
+      transaction: result
     });
+    
   } catch (error) {
-    console.error('Error adding points:', error);
-    return NextResponse.json({ error: 'Failed to add points' }, { status: 500 });
+    console.error('Error in POST /api/crayon-points/add:', error);
+    return NextResponse.json({ 
+      error: 'Internal server error' 
+    }, { status: 500 });
   }
 } 

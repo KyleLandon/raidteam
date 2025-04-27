@@ -1,40 +1,49 @@
 import { NextResponse } from 'next/server';
 import { removePoints } from '../../../../lib/db/crayons';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../../auth/[...nextauth]/route';
 
 export async function POST(request) {
   try {
-    // Check authentication
-    const session = await getServerSession(authOptions);
-    if (!session || !session.user.isOfficer) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const data = await request.json();
-    const { transactionId, reason } = data;
-
+    const body = await request.json();
+    const { 
+      transactionId, 
+      removedBy, 
+      removedByName, 
+      reason 
+    } = body;
+    
     // Validate required fields
-    if (!transactionId) {
-      return NextResponse.json({
-        success: false,
-        error: 'Missing required field: transactionId'
+    const requiredFields = ['transactionId', 'removedBy', 'removedByName', 'reason'];
+    const missingFields = requiredFields.filter(field => !body[field]);
+    
+    if (missingFields.length > 0) {
+      return NextResponse.json({ 
+        error: `Missing required fields: ${missingFields.join(', ')}` 
       }, { status: 400 });
     }
-
+    
     // Remove points
     const result = await removePoints({
       transactionId,
-      reason: reason || 'Points removed by officer',
-      removedBy: session.user.id
+      removedBy,
+      removedByName,
+      reason
     });
-
+    
+    if (!result) {
+      return NextResponse.json({ 
+        error: 'Transaction not found or already removed' 
+      }, { status: 404 });
+    }
+    
     return NextResponse.json({
       success: true,
-      result
+      transaction: result
     });
+    
   } catch (error) {
-    console.error('Error removing points:', error);
-    return NextResponse.json({ error: 'Failed to remove points' }, { status: 500 });
+    console.error('Error in POST /api/crayon-points/remove:', error);
+    return NextResponse.json({ 
+      error: 'Internal server error' 
+    }, { status: 500 });
   }
 } 
