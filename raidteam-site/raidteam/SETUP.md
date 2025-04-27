@@ -1,0 +1,1 @@
+-e "# Crayon Points System Setup\n\n1. Copy .env.local.example to .env.local\n2. Add your MongoDB connection string to .env.local\n3. Run 'npm install' to install dependencies\n4. Run 'npm run dev' to start the application" 
