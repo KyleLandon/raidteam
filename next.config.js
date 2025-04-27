@@ -12,6 +12,8 @@ const nextConfig = {
         config.resolve.alias = {
             ...config.resolve.alias,
         };
+        // Ensure proper module resolution
+        config.resolve.modules = ['node_modules', '.'];
         return config;
     },
 };

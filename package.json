@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "build:netlify": "node fix-paths.js && NETLIFY=true next build",
+        "build:netlify": "node fix-paths.js && node fix-api-imports.js && NETLIFY=true next build",
         "start": "next start",
         "lint": "next lint"
     },
