@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { addPoints } from '@/lib/db/crayons';
+import { addPoints } from '../../../../lib/db/crayons';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '../../auth/[...nextauth]/route';
 
 export async function POST(request) {
   try {

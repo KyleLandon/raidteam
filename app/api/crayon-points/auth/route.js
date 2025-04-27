@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getPlayerByDiscordId, addPlayer } from '@/lib/db/crayons';
+import { getPlayerByDiscordId, addPlayer } from '../../../../lib/db/crayons';
 
 // Simplified Discord auth function (would need complete Discord OAuth2 flow in production)
 export async function POST(request) {

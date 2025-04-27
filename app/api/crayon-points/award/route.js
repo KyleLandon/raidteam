@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { awardCrayonPoints } from '@/lib/db/crayons';
+import { awardCrayonPoints } from '../../../../lib/db/crayons';
 
 export async function POST(request) {
   try {

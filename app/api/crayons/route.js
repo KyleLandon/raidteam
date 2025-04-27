@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { addPoints, removePoints, getLeaderboard, getUserPoints } from '@/lib/db/crayons';
+import { authOptions } from '../auth/[...nextauth]/route';
+import { addPoints, removePoints, getLeaderboard, getUserPoints } from '../../../lib/db/crayons';
 import { NextResponse } from 'next/server';
 
 // Helper to check if user has officer role
