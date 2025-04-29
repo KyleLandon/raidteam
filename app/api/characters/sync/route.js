@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
-import clientPromise from '@/lib/mongodb';
+import clientPromise from '../../../../lib/mongodb';
 
 export async function POST(request) {
   try {

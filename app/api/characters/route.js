@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
-import clientPromise from '@/lib/mongodb';
+import clientPromise from '../../../lib/mongodb';
 import { logApiCall, logApiResponse, logApiError } from '../../../utils/debug';
 
 export const config = {
