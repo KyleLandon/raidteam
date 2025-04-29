@@ -4,6 +4,7 @@ import { logApiCall, logApiResponse, logApiError } from '../../../utils/debug';
 
 export const config = {
     runtime: 'nodejs',
+    regions: ['us-east-1'],
 };
 
 export async function GET(request) {
