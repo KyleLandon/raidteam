@@ -21,7 +21,8 @@ export default function AdminClient() {
     useEffect(() => {
         async function fetchCharacters() {
             try {
-                const response = await fetch('/api/characters');
+                const baseUrl = process.env.NODE_ENV === 'production' ? 'https://raidteam.netlify.app' : '';
+                const response = await fetch(`${baseUrl}/api/characters`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch characters');
                 }
@@ -41,7 +42,8 @@ export default function AdminClient() {
 
     const handleUpdatePoints = async (characterId, points) => {
         try {
-            const response = await fetch('/api/characters', {
+            const baseUrl = process.env.NODE_ENV === 'production' ? 'https://raidteam.netlify.app' : '';
+            const response = await fetch(`${baseUrl}/api/characters`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,7 +56,7 @@ export default function AdminClient() {
             }
 
             // Refresh the characters list
-            const updatedResponse = await fetch('/api/characters');
+            const updatedResponse = await fetch(`${baseUrl}/api/characters`);
             const updatedData = await updatedResponse.json();
             setCharacters(updatedData);
         } catch (err) {

@@ -14,7 +14,8 @@ export default function Leaderboard() {
     useEffect(() => {
         async function fetchCharacters() {
             try {
-                const response = await fetch('/api/characters');
+                const baseUrl = process.env.NODE_ENV === 'production' ? 'https://raidteam.netlify.app' : '';
+                const response = await fetch(`${baseUrl}/api/characters`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch characters');
                 }
