@@ -13,12 +13,20 @@ export default async function handler(req, res) {
       return res.status(500).json({ message: 'API configuration missing' });
     }
 
+    console.log('Attempting to fetch characters from WoWAudit...');
+    
     // Get characters from WoWAudit API
-    const response = await axios.get(`https://wowaudit.com/v1/characters`, {
+    const response = await axios.get(`https://wowaudit.com/api/characters`, {
       headers: {
         'Authorization': `Bearer ${WOWAUDIT_API_KEY}`,
         'Content-Type': 'application/json'
       }
+    });
+
+    console.log('WoWAudit API Response:', {
+      status: response.status,
+      headers: response.headers,
+      data: response.data
     });
 
     // Connect to MongoDB
@@ -47,12 +55,20 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('Error fetching characters:', error);
     if (error.response) {
-      // Log more detailed API error information
-      console.error('API Error:', {
+      console.error('WoWAudit API Error Details:', {
         status: error.response.status,
+        statusText: error.response.statusText,
+        headers: error.response.headers,
         data: error.response.data
       });
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
     }
-    res.status(500).json({ message: 'Error fetching characters' });
+    res.status(500).json({ 
+      message: 'Error fetching characters',
+      error: error.response?.data || error.message
+    });
   }
 } 
