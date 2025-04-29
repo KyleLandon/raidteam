@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
-import clientPromise from '../../../lib/mongodb';
+import clientPromise from '@/lib/mongodb';
 import { logApiCall, logApiResponse, logApiError } from '../../../utils/debug';
 
 export const config = {
@@ -8,21 +8,13 @@ export const config = {
     regions: ['us-east-1'],
 };
 
-export async function GET(request) {
+export async function GET() {
     logApiCall('GET', '/api/characters');
     
     try {
-        const token = await getToken({ req: request });
-        if (!token) {
-            logApiError('GET', '/api/characters', 'Unauthorized - No token');
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
-
-        // Get MongoDB connection
         const client = await clientPromise;
-        const db = client.db("raidteam");
-
-        // Get characters from MongoDB
+        const db = client.db('raidteam');
+        
         const characters = await db.collection('characters')
             .find({})
             .sort({ points: -1 })
@@ -31,8 +23,11 @@ export async function GET(request) {
         logApiResponse('GET', '/api/characters', { count: characters.length });
         return NextResponse.json(characters);
     } catch (error) {
-        logApiError('GET', '/api/characters', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        console.error('Error fetching characters:', error);
+        return NextResponse.json(
+            { error: 'Failed to fetch characters' },
+            { status: 500 }
+        );
     }
 }
 
@@ -41,50 +36,48 @@ export async function POST(request) {
     
     try {
         const token = await getToken({ req: request });
-        if (!token || token.role !== 'admin') {
+        if (!token || !token.isAdmin) {
             logApiError('POST', '/api/characters', 'Unauthorized - Invalid role');
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+            return NextResponse.json(
+                { error: 'Unauthorized' },
+                { status: 401 }
+            );
         }
+        
+        const client = await clientPromise;
+        const db = client.db('raidteam');
         
         const { characterId, points } = await request.json();
         console.log('[API] Update request:', { characterId, points });
         
-        // Get MongoDB connection
-        const client = await clientPromise;
-        const db = client.db("raidteam");
-
-        // Update character points in MongoDB
         const result = await db.collection('characters').updateOne(
             { id: characterId },
-            { 
-                $set: { 
-                    points,
-                    lastUpdated: new Date().toISOString(),
-                    pointsUpdatedBy: token.name || 'admin'
-                }
-            }
+            { $set: { points } }
         );
 
         if (result.matchedCount === 0) {
             logApiError('POST', '/api/characters', 'Character not found');
-            return NextResponse.json({ error: 'Character not found' }, { status: 404 });
+            return NextResponse.json(
+                { error: 'Character not found' },
+                { status: 404 }
+            );
         }
 
         // Log the points update in history
         await db.collection('points_history').insertOne({
             characterId,
             points,
-            updatedBy: token.name || 'admin',
-            timestamp: new Date().toISOString()
+            updatedAt: new Date(),
+            updatedBy: token.name
         });
 
         logApiResponse('POST', '/api/characters', result);
-        return NextResponse.json({ 
-            success: true,
-            modifiedCount: result.modifiedCount
-        });
+        return NextResponse.json({ success: true });
     } catch (error) {
-        logApiError('POST', '/api/characters', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        console.error('Error updating character points:', error);
+        return NextResponse.json(
+            { error: 'Failed to update character points' },
+            { status: 500 }
+        );
     }
 } 
