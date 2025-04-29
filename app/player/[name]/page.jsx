@@ -57,7 +57,11 @@ export default function PlayerProfile({ params }) {
         
         <div className="player-content">
           {player.content && (
-            <div dangerouslySetInnerHTML={{ __html: player.content }} />
+            <div 
+              dangerouslySetInnerHTML={{ 
+                __html: player.content.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+              }} 
+            />
           )}
         </div>
         

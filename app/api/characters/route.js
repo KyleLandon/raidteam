@@ -3,8 +3,7 @@ import { getToken } from 'next-auth/jwt';
 import { logApiCall, logApiResponse, logApiError } from '../../../utils/debug';
 
 export const config = {
-    runtime: 'edge',
-    regions: ['iad1'],
+    runtime: 'nodejs',
 };
 
 export async function GET(request) {
