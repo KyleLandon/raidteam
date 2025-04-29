@@ -3,77 +3,106 @@
   padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: #fff;
   background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23f0f0f0' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
-.main {
-  padding: 5rem 0;
-  flex: 1;
+.banner {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  max-width: 800px;
-  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 0.5rem;
 }
 
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
   font-family: 'Comic Sans MS', cursive, sans-serif;
-  color: #333;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  color: #ff6b6b;
+  text-shadow: 2px 2px 8px rgba(255,107,107,0.15);
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #4a90e2;
+  margin-top: 0.5rem;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
+  font-weight: 500;
 }
 
 .leaderboard {
   width: 100%;
-  margin-top: 2rem;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.85);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
   overflow: hidden;
+  backdrop-filter: blur(2px);
+  border: 1.5px solid rgba(255,255,255,0.18);
 }
 
 .header {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  padding: 1rem;
-  background: #ff6b6b;
+  padding: 1.2rem 1rem;
+  background: linear-gradient(90deg, #ff6b6b 60%, #4a90e2 100%);
   color: white;
   font-weight: bold;
   text-align: center;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
 }
 
 .row {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  padding: 1rem;
+  padding: 1.1rem 1rem;
   border-bottom: 1px solid #eee;
   text-align: center;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  font-size: 1.1rem;
+  background: rgba(255,255,255,0.7);
 }
 
 .row:hover {
   background-color: #f8f9fa;
+  box-shadow: 0 2px 8px rgba(255,107,107,0.08);
 }
 
 .rank {
   font-weight: bold;
   color: #ff6b6b;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .name {
-  font-weight: 500;
+  font-weight: 600;
+  color: #333;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  letter-spacing: 0.5px;
 }
 
 .points {
   font-weight: bold;
   color: #4a90e2;
+  font-size: 1.2rem;
 }
 
 .loading {
@@ -95,12 +124,17 @@
 
 @media (max-width: 600px) {
   .title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
-  
+  .subtitle {
+    font-size: 1rem;
+  }
   .header, .row {
-    grid-template-columns: 0.5fr 2fr 1fr;
-    padding: 0.75rem;
-    font-size: 0.9rem;
+    grid-template-columns: 0.7fr 2fr 1fr;
+    padding: 0.7rem 0.5rem;
+    font-size: 0.95rem;
+  }
+  .leaderboard {
+    max-width: 98vw;
   }
 } 
