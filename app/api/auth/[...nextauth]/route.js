@@ -10,6 +10,10 @@ export const authOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
+                if (!credentials?.username || !credentials?.password) {
+                    throw new Error('Missing credentials');
+                }
+
                 if (credentials.username === process.env.ADMIN_USERNAME && 
                     credentials.password === process.env.ADMIN_PASSWORD) {
                     return {
@@ -24,6 +28,7 @@ export const authOptions = {
     ],
     pages: {
         signIn: '/login',
+        error: '/login',
     },
     callbacks: {
         async jwt({ token, user }) {
@@ -38,7 +43,11 @@ export const authOptions = {
         }
     },
     secret: process.env.NEXTAUTH_SECRET,
-    debug: process.env.NODE_ENV === 'development'
+    debug: process.env.NODE_ENV === 'development',
+    session: {
+        strategy: 'jwt',
+        maxAge: 30 * 24 * 60 * 60, // 30 days
+    }
 };
 
 const handler = NextAuth(authOptions);
