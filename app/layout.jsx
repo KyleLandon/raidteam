@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import Navigation from './components/Navigation';
+import NextAuthSessionProvider from './providers/SessionProvider';
 
 export const metadata = {
     title: 'Raid Team - WoW Guild',
@@ -16,7 +17,9 @@ export default function RootLayout({ children }) {
             <body>
                 <div className="content-wrapper">
                     <Navigation />
-                    <main>{children}</main>
+                    <NextAuthSessionProvider>
+                        <main>{children}</main>
+                    </NextAuthSessionProvider>
                 </div>
             </body>
         </html>
