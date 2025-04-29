@@ -30,4 +30,20 @@ export function logStateChange(componentName, stateName, newValue) {
     if (DEBUG) {
         console.log(`[State] ${componentName}.${stateName}`, newValue);
     }
+}
+
+export function logImageLoad(imageUrl) {
+    if (DEBUG) {
+        console.log(`[Image] Loading: ${imageUrl}`);
+    }
+}
+
+export function logImageError(imageUrl, error) {
+    console.error(`[Image Error] Failed to load: ${imageUrl}`, error);
+}
+
+export function logImageSuccess(imageUrl) {
+    if (DEBUG) {
+        console.log(`[Image] Successfully loaded: ${imageUrl}`);
+    }
 } 

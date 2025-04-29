@@ -4,7 +4,7 @@ const playerData = {
     role: "Worker",
     characterClass: "Warlock",
     joinDate: "2025",
-    imageUrl: "/images/players/greg.png", // Optional, add player images later
+    imageUrl: "/images/players/gregimage.png", // Optional, add player images later
     content: `
       <div class="player-custom-content">
         <h2>Why I Like to Eat Red Crayons</h2>
@@ -79,4 +79,4 @@ const playerData = {
   }
 };
 
-export default playerData; 
+export default playerData;

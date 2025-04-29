@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import playerData from '../../../data/players.js';
+import { logComponentRender, logImageLoad, logImageError, logImageSuccess } from '../../../utils/debug';
 
 export default function PlayerProfile({ params }) {
   const playerName = params.name;
@@ -11,9 +12,9 @@ export default function PlayerProfile({ params }) {
   
   useEffect(() => {
     // Ensure the page is properly rendered on the client side
-    console.log('Player profile loaded for:', playerName);
+    logComponentRender('PlayerProfile', { playerName });
     if (player && player.imageUrl) {
-      console.log('Player image URL:', player.imageUrl);
+      logImageLoad(player.imageUrl);
     }
   }, [playerName, player]);
   
@@ -44,8 +45,9 @@ export default function PlayerProfile({ params }) {
               <img 
                 src={player.imageUrl} 
                 alt={player.displayName}
+                onLoad={() => logImageSuccess(player.imageUrl)}
                 onError={(e) => {
-                  console.error('Image failed to load:', player.imageUrl);
+                  logImageError(player.imageUrl, e);
                   e.target.style.display = 'none';
                 }}
               />

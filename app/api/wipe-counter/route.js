@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server';
 // Your WarcraftLogs API credentials
 const CLIENT_ID = process.env.WARCRAFTLOGS_CLIENT_ID;
 const CLIENT_SECRET = process.env.WARCRAFTLOGS_CLIENT_SECRET;
-const GUILD_NAME = process.env.GUILD_NAME || 'YourGuildName';
-const SERVER_NAME = process.env.SERVER_NAME || 'YourServerName';
+const GUILD_NAME = process.env.GUILD_NAME || 'raid team';
+const SERVER_NAME = process.env.SERVER_NAME || 'Illidan';
 const REGION = process.env.WOW_REGION || 'us';
 
 // GraphQL query to get reports
