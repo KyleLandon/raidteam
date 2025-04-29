@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation';
 import styles from '../../styles/Admin.module.css';
 
 export default function Admin() {
-    const { data: session, status } = useSession();
+    const sessionData = typeof useSession === 'function' ? useSession() : {};
+    const { data: session, status } = sessionData || {};
     const router = useRouter();
     const [characters, setCharacters] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -41,7 +42,7 @@ export default function Admin() {
 
     const handleUpdatePoints = async (characterId, points) => {
         try {
-            const response = await fetch('/api/update-points', {
+            const response = await fetch('/api/characters', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
