@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-import Link from 'next/link';
+import Navigation from './components/Navigation';
 
 export const metadata = {
     title: 'Raid Team - WoW Guild',
@@ -15,12 +15,7 @@ export default function RootLayout({ children }) {
             </head>
             <body>
                 <div className="content-wrapper">
-                    <nav className="main-nav">
-                        <div className="nav-links">
-                            <Link href="/" className="nav-link">Home</Link>
-                            <Link href="/apply" className="nav-link">Apply</Link>
-                        </div>
-                    </nav>
+                    <Navigation />
                     <main>{children}</main>
                 </div>
             </body>
