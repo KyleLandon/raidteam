@@ -2,6 +2,11 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]/route';
 
+export const config = {
+    runtime: 'edge',
+    regions: ['iad1'],
+};
+
 export async function GET() {
     try {
         // First, get the list of characters
