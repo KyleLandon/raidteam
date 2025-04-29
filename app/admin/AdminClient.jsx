@@ -48,7 +48,7 @@ export default function AdminClient() {
     };
 
     useEffect(() => {
-        if (session?.user?.role === 'admin') {
+        if (session?.user?.isAdmin) {
             fetchCharacters();
         }
     }, [session]);
@@ -117,7 +117,7 @@ export default function AdminClient() {
     };
 
     if (status === 'loading') return <div className={styles.loading}>Loading...</div>;
-    if (!session || session.user.role !== 'admin') return null;
+    if (!session || !session.user.isAdmin) return null;
 
     return (
         <div className={styles.container}>

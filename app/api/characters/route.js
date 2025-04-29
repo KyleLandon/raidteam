@@ -13,7 +13,7 @@ export async function GET() {
     
     try {
         const client = await clientPromise;
-        const db = client.db('raidteam');
+        const db = client.db('raid-team');
         
         const characters = await db.collection('characters')
             .find({})
@@ -45,7 +45,7 @@ export async function POST(request) {
         }
         
         const client = await clientPromise;
-        const db = client.db('raidteam');
+        const db = client.db('raid-team');
         
         const { characterId, points } = await request.json();
         console.log('[API] Update request:', { characterId, points });

@@ -15,7 +15,7 @@ export const authOptions = {
                     return {
                         id: '1',
                         name: 'Admin',
-                        role: 'admin'
+                        isAdmin: true
                     };
                 }
                 return null;
@@ -28,16 +28,17 @@ export const authOptions = {
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-                token.role = user.role;
+                token.isAdmin = user.isAdmin;
             }
             return token;
         },
         async session({ session, token }) {
-            session.user.role = token.role;
+            session.user.isAdmin = token.isAdmin;
             return session;
         }
     },
-    secret: process.env.NEXTAUTH_SECRET
+    secret: process.env.NEXTAUTH_SECRET,
+    debug: process.env.NODE_ENV === 'development'
 };
 
 const handler = NextAuth(authOptions);

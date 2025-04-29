@@ -13,7 +13,7 @@ export async function POST(request) {
     }
 
     const client = await clientPromise;
-    const db = client.db('raidteam');
+    const db = client.db('raid-team');
     
     // Fetch characters from WowAudit
     const response = await fetch('https://wowaudit.com/api/v1/characters', {
