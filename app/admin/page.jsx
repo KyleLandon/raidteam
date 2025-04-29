@@ -6,8 +6,7 @@ import { useRouter } from 'next/navigation';
 import styles from '../../styles/Admin.module.css';
 
 export default function Admin() {
-    const sessionData = typeof useSession === 'function' ? useSession() : {};
-    const { data: session, status } = sessionData || {};
+    const { data: session, status } = useSession();
     const router = useRouter();
     const [characters, setCharacters] = useState([]);
     const [loading, setLoading] = useState(true);
