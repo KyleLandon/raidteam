@@ -8,12 +8,22 @@ async function initializeDatabase() {
 
     // Create collections if they don't exist
     console.log('Creating collections...');
-    await db.createCollection("crayon_points");
+    await db.createCollection("characters");
     await db.createCollection("points_history");
 
-    // Create indexes
+    // Create indexes for characters collection
     console.log('Creating indexes...');
-    await db.collection("crayon_points").createIndex({ characterId: 1 }, { unique: true });
+    await db.collection("characters").createIndex({ id: 1 }, { unique: true });
+    await db.collection("characters").createIndex({ name: 1 });
+    await db.collection("characters").createIndex({ realm: 1 });
+    await db.collection("characters").createIndex({ class: 1 });
+    await db.collection("characters").createIndex({ role: 1 });
+    await db.collection("characters").createIndex({ rank: 1 });
+    await db.collection("characters").createIndex({ status: 1 });
+    await db.collection("characters").createIndex({ blizzard_id: 1 });
+    await db.collection("characters").createIndex({ lastSynced: -1 });
+
+    // Create indexes for points history
     await db.collection("points_history").createIndex({ characterId: 1 });
     await db.collection("points_history").createIndex({ timestamp: -1 });
 

@@ -12,6 +12,7 @@ export default function AdminClient() {
     const [characters, setCharacters] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [syncing, setSyncing] = useState(false);
 
     logComponentRender('AdminClient', { status, session: session ? 'authenticated' : 'unauthenticated' });
 
@@ -22,35 +23,70 @@ export default function AdminClient() {
         }
     }, [status, router]);
 
-    useEffect(() => {
-        async function fetchCharacters() {
-            try {
-                const baseUrl = process.env.NODE_ENV === 'production' ? 'https://raidteam.netlify.app' : '';
-                const url = `${baseUrl}/api/characters`;
-                
-                logApiCall('GET', url);
-                const response = await fetch(url);
-                logApiResponse('GET', url, response);
-                
-                if (!response.ok) {
-                    throw new Error('Failed to fetch characters');
-                }
-                const data = await response.json();
-                logStateChange('AdminClient', 'characters', data);
-                setCharacters(data);
-            } catch (err) {
-                logApiError('GET', '/api/characters', err);
-                setError(err.message);
-            } finally {
-                logStateChange('AdminClient', 'loading', false);
-                setLoading(false);
+    const fetchCharacters = async () => {
+        try {
+            const baseUrl = process.env.NODE_ENV === 'production' ? 'https://raidteam.netlify.app' : '';
+            const url = `${baseUrl}/api/characters`;
+            
+            logApiCall('GET', url);
+            const response = await fetch(url);
+            logApiResponse('GET', url, response);
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch characters');
             }
+            const data = await response.json();
+            logStateChange('AdminClient', 'characters', data);
+            setCharacters(data);
+        } catch (err) {
+            logApiError('GET', '/api/characters', err);
+            setError(err.message);
+        } finally {
+            logStateChange('AdminClient', 'loading', false);
+            setLoading(false);
         }
+    };
 
+    useEffect(() => {
         if (session?.user?.role === 'admin') {
             fetchCharacters();
         }
     }, [session]);
+
+    const handleSync = async () => {
+        try {
+            setSyncing(true);
+            setError(null);
+            
+            const baseUrl = process.env.NODE_ENV === 'production' ? 'https://raidteam.netlify.app' : '';
+            const url = `${baseUrl}/api/sync`;
+            
+            logApiCall('POST', url);
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            
+            logApiResponse('POST', url, response);
+
+            if (!response.ok) {
+                throw new Error('Failed to sync characters');
+            }
+
+            const data = await response.json();
+            logStateChange('AdminClient', 'sync', data);
+
+            // Refresh the characters list after sync
+            await fetchCharacters();
+        } catch (err) {
+            logApiError('POST', '/api/sync', err);
+            setError(err.message);
+        } finally {
+            setSyncing(false);
+        }
+    };
 
     const handleUpdatePoints = async (characterId, points) => {
         try {
@@ -73,13 +109,7 @@ export default function AdminClient() {
             }
 
             // Refresh the characters list
-            logApiCall('GET', url);
-            const updatedResponse = await fetch(url);
-            logApiResponse('GET', url, updatedResponse);
-            
-            const updatedData = await updatedResponse.json();
-            logStateChange('AdminClient', 'characters', updatedData);
-            setCharacters(updatedData);
+            await fetchCharacters();
         } catch (err) {
             logApiError('POST', '/api/characters', err);
             setError(err.message);
@@ -93,6 +123,17 @@ export default function AdminClient() {
         <div className={styles.container}>
             <h1>Admin Dashboard</h1>
             {error && <div className={styles.error}>{error}</div>}
+            
+            <div className={styles.actions}>
+                <button 
+                    onClick={handleSync} 
+                    disabled={syncing}
+                    className={styles.syncButton}
+                >
+                    {syncing ? 'Syncing...' : 'Sync from WowAudit'}
+                </button>
+            </div>
+
             <table className={styles.table}>
                 <thead>
                     <tr>
