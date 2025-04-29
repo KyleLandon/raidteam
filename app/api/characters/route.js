@@ -1,14 +1,18 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]/route';
+import { getToken } from 'next-auth/jwt';
 
 export const config = {
     runtime: 'edge',
     regions: ['iad1'],
 };
 
-export async function GET() {
+export async function GET(request) {
     try {
+        const token = await getToken({ req: request });
+        if (!token) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
         // First, get the list of characters
         const charactersResponse = await fetch('https://wowaudit.com/v1/characters', {
             headers: {
@@ -89,9 +93,8 @@ function calculatePoints(history) {
 
 export async function POST(request) {
     try {
-        const session = await getServerSession(authOptions);
-        
-        if (!session || session.user.role !== 'admin') {
+        const token = await getToken({ req: request });
+        if (!token || token.role !== 'admin') {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
         
