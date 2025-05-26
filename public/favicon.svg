@@ -1,30 +1,50 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .favicon-center-dot {
-      fill: #014847;
+    .favicon-bg {
+      fill: #1a1a1a;
     }
-
-    .favicon-lines {
-      fill: #05BDBA;
+    
+    .favicon-primary {
+      fill: #ff6b6b;
+    }
+    
+    .favicon-secondary {
+      fill: #4ecdc4;
+    }
+    
+    .favicon-accent {
+      fill: #ffe66d;
     }
 
     @media (prefers-color-scheme: dark) {
-      .favicon-center-dot {
-        fill: #fff;
+      .favicon-bg {
+        fill: #2d2d2d;
       }
-
-      .favicon-lines {
-        fill: #05BDBA;
+      
+      .favicon-primary {
+        fill: #ff8a8a;
+      }
+      
+      .favicon-secondary {
+        fill: #6ee6dd;
+      }
+      
+      .favicon-accent {
+        fill: #ffed8a;
       }
     }
   </style>
-  <path class="favicon-center-dot" stroke="none" d="M17.9922 18.3225H14.005L13.6746 17.9921V14.005L14.005 13.6746H17.9922L18.3226 14.005V17.9921L17.9922 18.3225Z" />
-  <g class="favicon-lines" stroke="none">
-    <path d="M9.6958 24.3311H9.35705L7.6661 22.6401V22.3041L10.2511 19.7164L12.042 19.7191L12.2808 19.9552V21.7461L9.6958 24.3311Z" />
-    <path d="M7.6661 9.69576V9.35701L9.35705 7.66606H9.6958L12.2808 10.2511V12.0392L12.042 12.2808H10.2511L7.6661 9.69576Z" />
-    <path d="M10.0457 17.4369H0.205466L0 17.2314V14.7658L0.205466 14.5603H10.0457L10.2511 14.7658V17.2314L10.0457 17.4369Z" />
-    <path d="M31.7945 17.4369H21.9544L21.7489 17.2314V14.7658L21.9544 14.5603H31.7945L32 14.7658V17.2314L31.7945 17.4369Z" />
-    <path d="M14.5631 10.0456V2.66547L14.7686 2.46001H17.2343L17.4396 2.66547V10.0456L17.2343 10.2511H14.7686L14.5631 10.0456Z" />
-    <path d="M14.5631 29.3316V21.9515L14.7686 21.746H17.2343L17.4396 21.9515V29.3316L17.2343 29.5371H14.7686L14.5631 29.3316Z" />
-  </g>
+  
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="15" class="favicon-bg" stroke="#333" stroke-width="1"/>
+  
+  <!-- Stylized "R" for RaidTeam -->
+  <path class="favicon-primary" d="M8 8h6c2.5 0 4 1.5 4 3.5s-1.5 3.5-4 3.5h-2l3 8h-3l-2.5-7H11v7H8V8z"/>
+  <path class="favicon-primary" d="M11 11v3h3c1 0 1.5-0.5 1.5-1.5S15 11 14 11h-3z"/>
+  
+  <!-- Small accent dots representing team members -->
+  <circle cx="22" cy="10" r="1.5" class="favicon-secondary"/>
+  <circle cx="24" cy="14" r="1" class="favicon-accent"/>
+  <circle cx="22" cy="18" r="1.5" class="favicon-secondary"/>
+  <circle cx="24" cy="22" r="1" class="favicon-accent"/>
 </svg>
