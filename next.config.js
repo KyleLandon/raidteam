@@ -5,7 +5,10 @@ const nextConfig = {
         unoptimized: true,
     },
     experimental: {
-        serverActions: true,
+        serverActions: {
+            allowedOrigins: ['*'],
+            bodySizeLimit: '2mb'
+        },
     },
     async rewrites() {
         return [
